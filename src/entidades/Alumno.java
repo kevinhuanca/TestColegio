@@ -48,7 +48,9 @@ public class Alumno {
     }
     
     public void agregarMateria(Materia m) {
-        materias.add(m);
+        if (!materias.contains(m)) {
+            materias.add(m);
+        }
     }
     
     public int cantidadMaterias() {

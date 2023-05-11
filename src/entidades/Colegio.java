@@ -3,16 +3,27 @@ package entidades;
 public class Colegio {
 
     public static void main(String[] args) {
-        Alumno a = new Alumno(1,"huanca","kevin");
-        Materia mate = new Materia(1001, "mate", 2009);
-        Materia lengua = new Materia(1002, "lengua", 2029);
-        Materia cs = new Materia(1003, "cs", 2019);
-        
+        // a)
+        Materia ingles = new Materia(1, "Inglés I", 1);
+        Materia mate = new Materia(2, "Matematica", 1);
+        Materia labo = new Materia(3, "Laboratorio I", 1);
+        // b)
+        Alumno a = new Alumno(1001, "López", "Martin");
+        Alumno b = new Alumno(1002, "Martínez", "Brenda");
+        // c)
+        a.agregarMateria(ingles);
         a.agregarMateria(mate);
-        a.agregarMateria(lengua);
-        a.agregarMateria(cs);
-        
-        System.out.println(a.cantidadMaterias());
+        a.agregarMateria(labo);
+        // d)
+        b.agregarMateria(ingles);
+        b.agregarMateria(mate);
+        b.agregarMateria(labo);
+        b.agregarMateria(labo);
+        // e)
+        System.out.print(a.toString()+" esta inscrito en "+a.cantidadMaterias()+" materias: ");
+        System.out.println(a.getMaterias());
+        System.out.print(b.toString()+" esta inscrito en "+b.cantidadMaterias()+" materias: ");
+        System.out.println(b.getMaterias());
     }
 
 }
