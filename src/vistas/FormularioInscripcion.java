@@ -1,26 +1,29 @@
 package vistas;
 
+import entidades.Alumno;
+import entidades.Materia;
+import javax.swing.JOptionPane;
+
 public class FormularioInscripcion extends javax.swing.JInternalFrame {
+//    private ArrayList<>
 
     public FormularioInscripcion() {
         initComponents();
+        agregarMaterias();
+        agregarAlumnos();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbMaterias = new javax.swing.JComboBox<>();
+        cmbAlumnos = new javax.swing.JComboBox<>();
         lblElejirMateria = new javax.swing.JLabel();
         lblElejirAlumno = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         btnInscribir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblElejirMateria.setText("Eija una materia:");
 
@@ -30,6 +33,11 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
         lblTitulo.setText("Formulario de Inscripción");
 
         btnInscribir.setText("Inscribir");
+        btnInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInscribirActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -52,12 +60,12 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblElejirMateria)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblElejirAlumno)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
@@ -73,11 +81,11 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblElejirMateria))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblElejirAlumno))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -93,12 +101,39 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
+        Materia materiaSelecionada = (Materia)cmbMaterias.getSelectedItem();
+        Alumno alumnoSeleccionado = (Alumno)cmbAlumnos.getSelectedItem();
+        
+        if (alumnoSeleccionado.getMaterias().contains(materiaSelecionada)) {
+            JOptionPane.showMessageDialog(this, "El alumno ya fue inscrito en la materia!");
+        } else {
+            alumnoSeleccionado.agregarMateria(materiaSelecionada);
+        
+            System.out.print(alumnoSeleccionado.toString()+" esta inscrito en "+alumnoSeleccionado.cantidadMaterias()+" materias: ");
+            System.out.println(alumnoSeleccionado.getMaterias()+"\n");
+        
+            JOptionPane.showMessageDialog(this, "Inscripcion exitosa!");
+        }
+    }//GEN-LAST:event_btnInscribirActionPerformed
+
+    public void agregarMaterias() {
+        for (Materia materia : Menu.listadoMaterias) {
+            cmbMaterias.addItem(materia);
+        }
+    }
+    
+    public void agregarAlumnos() {
+        for (Alumno alumno : Menu.listadoAlumnos) {
+            cmbAlumnos.addItem(alumno);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInscribir;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<Alumno> cmbAlumnos;
+    private javax.swing.JComboBox<Materia> cmbMaterias;
     private javax.swing.JLabel lblElejirAlumno;
     private javax.swing.JLabel lblElejirMateria;
     private javax.swing.JLabel lblTitulo;

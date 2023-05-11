@@ -125,8 +125,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         try {
             // datos ingresados
             int legajo = Integer.parseInt(txtLegajo.getText());
-            String apellido = txtApellido.getText();
-            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText().toUpperCase();
+            String nombre = txtNombre.getText().toUpperCase();
             
             // verifica que no se ingrese un alumno duplicado
             // compara los legajos

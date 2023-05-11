@@ -31,6 +31,14 @@ public class Alumno {
         this.apellido = apellido;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public ArrayList<Materia> getMaterias() {
         return materias;
     }
@@ -45,6 +53,11 @@ public class Alumno {
     
     public int cantidadMaterias() {
         return materias.size();
+    }
+
+    @Override
+    public String toString() {
+        return apellido + " " + nombre;
     }
     
 }

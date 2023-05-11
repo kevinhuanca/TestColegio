@@ -125,7 +125,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         try {
             // datos ingresados
             int idMateria = Integer.parseInt(txtCodMateria.getText());
-            String nombre = txtNombreMateria.getText();
+            String nombre = txtNombreMateria.getText().toUpperCase();
             int anio = Integer.parseInt(txtAnioMateria.getText());
             
             // verifica que no se ingrese una materia duplicada
